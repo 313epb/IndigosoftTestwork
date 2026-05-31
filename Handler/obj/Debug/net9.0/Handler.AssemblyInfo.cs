@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Handler")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ae7c1ebdff5117a78772a664115f69319d92d5ce")]
 [assembly: System.Reflection.AssemblyProductAttribute("Handler")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Handler")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

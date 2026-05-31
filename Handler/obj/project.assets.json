@@ -603,6 +603,16 @@
             "rid": "win"
           }
         }
+      },
+      "Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Domain.dll": {}
+        }
       }
     }
   },
@@ -1478,10 +1488,16 @@
         "system.diagnostics.eventlog.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "Domain/1.0.0": {
+      "type": "project",
+      "path": "../Domain/Domain.csproj",
+      "msbuildProject": "../Domain/Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "Domain >= 1.0.0",
       "Microsoft.Extensions.Hosting >= 9.0.11"
     ]
   },
@@ -1516,7 +1532,11 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "E:\\Git\\IndigosoftTestwork\\Domain\\Domain.csproj": {
+              "projectPath": "E:\\Git\\IndigosoftTestwork\\Domain\\Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
