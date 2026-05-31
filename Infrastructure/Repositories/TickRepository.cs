@@ -1,15 +1,25 @@
-﻿using Infrastructure.Entities;
+﻿using AutoMapper;
+using Domain.Entities;
+using Domain.Interfaces;
+using Infrastructure.Entities;
 
 namespace Infrastructure.Repositories;
 
-public class TickRepository
+public class TickRepository(AppDbContext dbContext,IMapper mapper): ITickRepo
 {
-    private readonly AppDbContext _db;
-
-    public async Task SaveAsync(TickEntity tick, CancellationToken ct)
+    public async Task SaveBatchAsync(
+        IReadOnlyCollection<Tick> ticks,
+        CancellationToken cancellationToken)
     {
-        _db.Ticks.Add(tick);
+        if (ticks.Count == 0)
+        {
+            return;
+        }
+        
+        var entities = mapper.Map<IReadOnlyCollection<TickEntity>>(ticks);
 
-        await _db.SaveChangesAsync();
+        await dbContext.Ticks.AddRangeAsync(entities, cancellationToken);
+        await dbContext.SaveChangesAsync(cancellationToken);
     }
+    
 }
