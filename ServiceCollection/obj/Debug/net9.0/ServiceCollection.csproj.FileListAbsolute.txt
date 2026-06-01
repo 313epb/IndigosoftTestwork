@@ -1,0 +1,16 @@
+E:\Git\IndigosoftTestwork\ServiceCollection\bin\Debug\net9.0\ServiceCollection.deps.json
+E:\Git\IndigosoftTestwork\ServiceCollection\bin\Debug\net9.0\ServiceCollection.dll
+E:\Git\IndigosoftTestwork\ServiceCollection\bin\Debug\net9.0\ServiceCollection.pdb
+E:\Git\IndigosoftTestwork\ServiceCollection\bin\Debug\net9.0\Domain.dll
+E:\Git\IndigosoftTestwork\ServiceCollection\bin\Debug\net9.0\Domain.pdb
+E:\Git\IndigosoftTestwork\ServiceCollection\obj\Debug\net9.0\ServiceCollection.csproj.AssemblyReference.cache
+E:\Git\IndigosoftTestwork\ServiceCollection\obj\Debug\net9.0\ServiceCollection.GeneratedMSBuildEditorConfig.editorconfig
+E:\Git\IndigosoftTestwork\ServiceCollection\obj\Debug\net9.0\ServiceCollection.AssemblyInfoInputs.cache
+E:\Git\IndigosoftTestwork\ServiceCollection\obj\Debug\net9.0\ServiceCollection.AssemblyInfo.cs
+E:\Git\IndigosoftTestwork\ServiceCollection\obj\Debug\net9.0\ServiceCollection.csproj.CoreCompileInputs.cache
+E:\Git\IndigosoftTestwork\ServiceCollection\obj\Debug\net9.0\ServiceCollection.sourcelink.json
+E:\Git\IndigosoftTestwork\ServiceCollection\obj\Debug\net9.0\ServiceC.D3C24D32.Up2Date
+E:\Git\IndigosoftTestwork\ServiceCollection\obj\Debug\net9.0\ServiceCollection.dll
+E:\Git\IndigosoftTestwork\ServiceCollection\obj\Debug\net9.0\refint\ServiceCollection.dll
+E:\Git\IndigosoftTestwork\ServiceCollection\obj\Debug\net9.0\ServiceCollection.pdb
+E:\Git\IndigosoftTestwork\ServiceCollection\obj\Debug\net9.0\ref\ServiceCollection.dll

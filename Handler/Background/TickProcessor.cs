@@ -11,7 +11,7 @@ namespace Handler.Background;
 
 public class TickProcessor(
     Channel<Tick> channel,
-    ITickRepo repository,
+    ITickRepository tickRepository,
     Deduplicator deduplicator,
     ILogger<TickProcessor> logger)
     : BackgroundService
@@ -94,14 +94,21 @@ public class TickProcessor(
         List<Tick> batch,
         CancellationToken cancellationToken)
     {
-        await repository.SaveBatchAsync(
-            batch,
-            cancellationToken);
+        try
+        {
+            await tickRepository.SaveBatchAsync(
+                batch,
+                cancellationToken);
 
-        logger.LogDebug(
-            "Saved batch: {Count}",
-            batch.Count);
+            logger.LogDebug(
+                "Saved batch: {Count}",
+                batch.Count);
 
-        batch.Clear();
+            batch.Clear();
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "Error while saving batch");
+        }
     }
 }

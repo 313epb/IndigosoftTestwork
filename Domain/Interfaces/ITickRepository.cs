@@ -2,7 +2,7 @@
 
 namespace Domain.Interfaces;
 
-public interface ITickRepo
+public interface ITickRepository
 {
     Task SaveBatchAsync(IReadOnlyCollection<Tick> ticks, CancellationToken cancellationToken);
 }

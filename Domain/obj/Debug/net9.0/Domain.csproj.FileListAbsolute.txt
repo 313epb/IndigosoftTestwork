@@ -1,0 +1,13 @@
+E:\Git\IndigosoftTestwork\Domain\bin\Debug\net9.0\Domain.deps.json
+E:\Git\IndigosoftTestwork\Domain\bin\Debug\net9.0\Domain.dll
+E:\Git\IndigosoftTestwork\Domain\bin\Debug\net9.0\Domain.pdb
+E:\Git\IndigosoftTestwork\Domain\obj\Debug\net9.0\Domain.csproj.AssemblyReference.cache
+E:\Git\IndigosoftTestwork\Domain\obj\Debug\net9.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+E:\Git\IndigosoftTestwork\Domain\obj\Debug\net9.0\Domain.AssemblyInfoInputs.cache
+E:\Git\IndigosoftTestwork\Domain\obj\Debug\net9.0\Domain.AssemblyInfo.cs
+E:\Git\IndigosoftTestwork\Domain\obj\Debug\net9.0\Domain.csproj.CoreCompileInputs.cache
+E:\Git\IndigosoftTestwork\Domain\obj\Debug\net9.0\Domain.sourcelink.json
+E:\Git\IndigosoftTestwork\Domain\obj\Debug\net9.0\Domain.dll
+E:\Git\IndigosoftTestwork\Domain\obj\Debug\net9.0\refint\Domain.dll
+E:\Git\IndigosoftTestwork\Domain\obj\Debug\net9.0\Domain.pdb
+E:\Git\IndigosoftTestwork\Domain\obj\Debug\net9.0\ref\Domain.dll
