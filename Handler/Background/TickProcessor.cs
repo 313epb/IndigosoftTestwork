@@ -25,57 +25,49 @@ public class TickProcessor(
         CancellationToken stoppingToken)
     {
         var batch = new List<Tick>();
-        var flushTimer = new PeriodicTimer(TimeSpan.FromMilliseconds(500));
 
         try
         {
-            while (!stoppingToken.IsCancellationRequested)
+            await foreach (
+                var tick in channel.Reader.ReadAllAsync(stoppingToken))
             {
-                var readTask = channel.Reader.ReadAsync(stoppingToken).AsTask();
-                var timerTask = flushTimer.WaitForNextTickAsync(stoppingToken).AsTask();
-
-                var completed = await Task.WhenAny(readTask, timerTask);
-
-                if (completed == readTask)
+                if (deduplicator.IsDuplicate(tick))
                 {
-                    var tick = await readTask;
-
-                    if (deduplicator.IsDuplicate(tick))
-                    {
-                        Interlocked.Increment(ref _duplicates);
-                        continue;
-                    }
-
-                    batch.Add(tick);
-
-                    var processed =
-                        Interlocked.Increment(ref _processedTicks);
-
-                    if (processed % 1000 == 0)
-                    {
-                        logger.LogInformation(
-                            "Processed={Processed}, Duplicates={Duplicates}",
-                            _processedTicks,
-                            _duplicates);
-                    }
-
-                    if (batch.Count >= BatchSize)
-                    {
-                        await FlushBatchAsync(
-                            batch,
-                            stoppingToken);
-                    }
+                    Interlocked.Increment(ref _duplicates);
+                    continue;
                 }
-                else
+
+                batch.Add(tick);
+
+                var processed =
+                    Interlocked.Increment(ref _processedTicks);
+
+                if (processed % 1000 == 0)
                 {
-                    if (batch.Count > 0)
-                    {
-                        await FlushBatchAsync(
-                            batch,
-                            stoppingToken);
-                    }
+                    logger.LogInformation(
+                        "Processed={Processed}, Duplicates={Duplicates}",
+                        _processedTicks,
+                        _duplicates);
+                }
+
+                if (batch.Count >= BatchSize)
+                {
+                    await FlushBatchAsync(
+                        batch,
+                        stoppingToken);
                 }
             }
+        }
+        catch (OperationCanceledException)
+        {
+            logger.LogInformation(
+                "TickProcessor stopping");
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(
+                ex,
+                "Error while processing ticks");
         }
         finally
         {
@@ -85,8 +77,6 @@ public class TickProcessor(
                     batch,
                     CancellationToken.None);
             }
-
-            flushTimer.Dispose();
         }
     }
 
@@ -94,6 +84,11 @@ public class TickProcessor(
         List<Tick> batch,
         CancellationToken cancellationToken)
     {
+        if (batch.Count == 0)
+        {
+            return;
+        }
+
         try
         {
             await tickRepository.SaveBatchAsync(
@@ -106,9 +101,11 @@ public class TickProcessor(
 
             batch.Clear();
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            logger.LogError(e, "Error while saving batch");
+            logger.LogError(
+                ex,
+                "Error while saving batch");
         }
     }
 }

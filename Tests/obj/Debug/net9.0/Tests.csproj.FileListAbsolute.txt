@@ -170,3 +170,5 @@ E:\Git\IndigosoftTestwork\Tests\obj\Debug\net9.0\refint\Tests.dll
 E:\Git\IndigosoftTestwork\Tests\obj\Debug\net9.0\Tests.pdb
 E:\Git\IndigosoftTestwork\Tests\obj\Debug\net9.0\Tests.genruntimeconfig.cache
 E:\Git\IndigosoftTestwork\Tests\obj\Debug\net9.0\ref\Tests.dll
+E:\Git\IndigosoftTestwork\Tests\bin\Debug\net9.0\Castle.Core.dll
+E:\Git\IndigosoftTestwork\Tests\bin\Debug\net9.0\Moq.dll

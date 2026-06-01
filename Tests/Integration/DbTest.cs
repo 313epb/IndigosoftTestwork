@@ -1,45 +1,15 @@
 ﻿using AutoMapper;
 using Domain.Entities;
 using FluentAssertions;
-using Infrastructure;
 using Infrastructure.Mapping;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Testcontainers.PostgreSql;
 
-namespace Tests;
+namespace Tests.Integration;
 
-public class IntegrationTests : IAsyncLifetime
+public class DbTest : BaseIntegrationTest
 {
-    private readonly PostgreSqlContainer _postgres =
-        new PostgreSqlBuilder()
-            .WithDatabase("testdb")
-            .WithUsername("postgres")
-            .WithPassword("postgres")
-            .Build();
-
-    private AppDbContext context = null!;
-
-    public async Task InitializeAsync()
-    {
-        await _postgres.StartAsync();
-
-        var options =
-            new DbContextOptionsBuilder<AppDbContext>()
-                .UseNpgsql(_postgres.GetConnectionString())
-                .Options;
-
-        context = new AppDbContext(options);
-
-        await context.Database.MigrateAsync();
-    }
-
-    public async Task DisposeAsync()
-    {
-        await _postgres.DisposeAsync();
-    }
-
     [Fact]
     public async Task SaveBatchAsync_Should_Save_Ticks()
     {
