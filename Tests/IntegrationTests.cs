@@ -19,7 +19,7 @@ public class IntegrationTests : IAsyncLifetime
             .WithPassword("postgres")
             .Build();
 
-    private AppDbContext _db = null!;
+    private AppDbContext context = null!;
 
     public async Task InitializeAsync()
     {
@@ -30,9 +30,9 @@ public class IntegrationTests : IAsyncLifetime
                 .UseNpgsql(_postgres.GetConnectionString())
                 .Options;
 
-        _db = new AppDbContext(options);
+        context = new AppDbContext(options);
 
-        await _db.Database.MigrateAsync();
+        await context.Database.MigrateAsync();
     }
 
     public async Task DisposeAsync()
@@ -47,7 +47,7 @@ public class IntegrationTests : IAsyncLifetime
         var mapperConfig = new MapperConfiguration(e => e.AddProfile(typeof(TickProfile)), new LoggerFactory());
         var mapper = new Mapper(mapperConfig);
         var repository =
-            new TickRepository(_db, mapper);
+            new TickRepository(context, mapper);
 
         var ticks =
             new List<Tick>
@@ -70,7 +70,7 @@ public class IntegrationTests : IAsyncLifetime
 
         // Assert
         var saved =
-            await _db.Ticks.ToListAsync();
+            await context.Ticks.ToListAsync();
         saved.Should().HaveCount(1);
         saved[0].Symbol.Should().Be("BTCUSDT");
     }
